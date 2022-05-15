@@ -1,30 +1,35 @@
-const moves = []
-const squares = document.getElementsByTagName('td')
+// Global variables
+const moves = []    // Store the moves made in an array object
+const squares = document.getElementsByTagName('td')     // Stores the table elements
 
-
+// Move class called when a move is about to be made
 class Move {
+    // constructor that defines the objects and methods 
     constructor(sign, pos) {
         this.sign = sign
         this.pos = pos
         this.playerMove(sign, pos)
     }
 
+    // player move method
     playerMove(sign, pos) {
         const playerSign = signSetter(sign)
         let clonedSign = playerSign.cloneNode(true)
-        storeMoves(pos)
+        storeMoves(pos)     // passes the move made to the storeMoves method that handles all move made
         pos.append(clonedSign)
         clonedSign.style.visibility = "visible"
 
-        this.computerMove(oppositeSign(this.sign))
-        checkWinner(playerSign)
+        this.computerMove(oppositeSign(this.sign))  // this calls the computer to make a move
+        // checkWinner(playerSign)
     }
 
+    // computer move method 
     computerMove(computerSign) {
-        const moves = storeMoves()
-        const compMove = squares[Math.floor(Math.random() * squares.length)]
+        const moves = storeMoves()      // gets the moves made from the store moves method
+        const compMove = squares[Math.floor(Math.random() * squares.length)]      // Randomly generates a player move
         const nextMove = compareMoves(moves, compMove)
 
+        // checks to see if the move is valid and passes it if it is
         if (nextMove === false) {
             this.computerMove(computerSign)
         } else {
@@ -32,12 +37,13 @@ class Move {
             storeMoves(compMove)
             compMove.append(clonedSign)
             clonedSign.style.visibility = "visible"
-            // checkWinner(computerSign)
+            checkWinner(computerSign)
         }
 
     }
 }
 
+// SquareHandler method handles the cick listener event of the table elements
 class SquareHandler {
     constructor(sign, obj) {
         this.sign = sign
@@ -55,6 +61,7 @@ class SquareHandler {
 
 }
 
+// Main app static class
 class App {
     static init() {
 
@@ -68,27 +75,30 @@ class App {
 
 }
 
+// method for checking if there is a winner
 function checkWinner(sign) {
     console.log(squares.childNode)
     let item = []
     item = [squares]
-    console.log(item)
+
+    if (item.childNodes[0] === sign) {
+        console.log(item.id)
+    }
 
     for (const node of item) {
         console.log(node)
-        if (item.childNode.length > 0) {
-            console.log(node.childNode.id)
-        }
+
+        // if (item.childNode.length > 0) {
+        //     console.log(node.childNode.id)
+        // }
     }
 
 }
 
+// compares the next move if it is valid
 function compareMoves(moves, nextMove) {
     let isConfirm = false
     for (i in moves) {
-        if (item.childNodes[0] === sign) {
-            console.log(item.id)
-        }
         if (moves[i] === nextMove) {
             isConfirm = false
             break
@@ -100,7 +110,7 @@ function compareMoves(moves, nextMove) {
     return isConfirm
 }
 
-
+// stores every move made by player or computer
 function storeMoves(playerMoves = null) {
     if (playerMoves === null) {
         return moves
@@ -110,6 +120,7 @@ function storeMoves(playerMoves = null) {
     }
 }
 
+// returns the opposite sign of the player sign
 function oppositeSign(inputSign) {
     var computerSign
     if (inputSign.id === document.getElementById("circle").id) {
@@ -121,6 +132,7 @@ function oppositeSign(inputSign) {
     }
 }
 
+// this sets the sign of the player
 function signSetter(inputSign) {
     var playerSign
     if (inputSign === 'X') {
@@ -136,5 +148,5 @@ function signSetter(inputSign) {
 }
 
 
-
+// initialises the static app class
 App.init()
