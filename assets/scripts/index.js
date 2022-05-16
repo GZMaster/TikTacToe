@@ -100,36 +100,8 @@ function checkWinner(sign) {
         }
     }
 
-    for (i = 0; i < 3; i++) {
-        var passCount = 0
-
-        if ((id[i] === Ahori[i]) && (id.length === Ahori.length)) {
-            passCount = i + 1
-        } else if ((id[i] === Bhori[i]) && (id.length === Bhori.length)) {
-            passCount = i + 1
-        } else if ((id[i] === Chori[i]) && (id.length === Chori.length)) {
-            passCount = i + 1
-        } else if ((id[i] === Avert[i]) && (id.length === Avert.length)) {
-            passCount = i + 1
-        } else if ((id[i] === Bvert[i]) && (id.length === Bvert.length)) {
-            passCount = i + 1
-        } else if ((id[i] === Cvert[i]) && (id.length === Cvert.length)) {
-            passCount = i + 1
-        } else if ((id[i] === Adiag[i]) && (id.length === Adiag.length)) {
-            passCount = i + 1
-        } else if ((id[i] === Cdiag[i]) && (id.length === Cdiag.length)) {
-            passCount = i + 1
-        } else { continue }
-
-        if (passCount === 3) {
-            console.log(passCount)
-        } else {
-
-        }
-    }
 
 
-    // console.log(pass)
 }
 
 // compares the next move if it is valid
