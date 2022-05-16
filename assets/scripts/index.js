@@ -21,6 +21,7 @@ class Move {
         clonedSign.style.visibility = "visible"
         if (checkWinner(playerSign)) {
             alert('You Won')
+            location.reload();
         } else {
             this.computerMove(oppositeSign(this.sign))  // this calls the computer to make a move
         }
@@ -32,7 +33,7 @@ class Move {
         try {
             const moves = storeMoves()      // gets the moves made from the store moves method
         } catch (RangeError) {
-            return
+            alert('Draw')
         }
         const compMove = squareList[Math.floor(Math.random() * squareList.length)]      // Randomly generates a player move
         const nextMove = compareMoves(moves, compMove)
@@ -49,6 +50,7 @@ class Move {
             setTimeout(() => {
                 if (checkWinner(computerSign)) {
                     alert('You Lost')
+                    location.reload();
                 }
             }, 200);
         }
