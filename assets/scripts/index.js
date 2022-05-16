@@ -1,6 +1,7 @@
 // Global variables
 const moves = []    // Store the moves made in an array object
 const squares = document.getElementsByTagName('td')     // Stores the table elements
+var squareList = Array.prototype.slice.call(squares);
 
 // Move class called when a move is about to be made
 class Move {
@@ -26,7 +27,7 @@ class Move {
     // computer move method 
     computerMove(computerSign) {
         const moves = storeMoves()      // gets the moves made from the store moves method
-        const compMove = squares[Math.floor(Math.random() * squares.length)]      // Randomly generates a player move
+        const compMove = squareList[Math.floor(Math.random() * squareList.length)]      // Randomly generates a player move
         const nextMove = compareMoves(moves, compMove)
 
         // checks to see if the move is valid and passes it if it is
@@ -37,6 +38,7 @@ class Move {
             storeMoves(compMove)
             compMove.append(clonedSign)
             clonedSign.style.visibility = "visible"
+
             checkWinner(computerSign)
         }
 
@@ -67,7 +69,7 @@ class App {
 
         const sign = 'X'
 
-        for (const item of squares) {
+        for (const item of squareList) {
             new SquareHandler(sign, item)
         }
 
@@ -77,21 +79,28 @@ class App {
 
 // method for checking if there is a winner
 function checkWinner(sign) {
-    console.log(squares.childNode)
-    let item = []
-    item = [squares]
+    var item = squareList
+    var id = []
+    var Ahori = ['A1', 'A2', 'A3']
+    var Bhori = ['B1', 'B2', 'B3']
+    var Chori = ['C1', 'C2', 'C3']
+    var Avert = ['A1', 'B1', 'C1']
+    var Bvert = ['A2', 'B2', 'C2']
+    var Cvert = ['A3', 'B3', 'C3']
+    var Adiag = ['A1', 'B2', 'C3']
+    var Cdiag = ['A3', 'B2', 'C1']
 
-    if (item.childNodes[0] === sign) {
-        console.log(item.id)
+    var pass = 0
+
+    for (var node in item) {
+        if ((item[node].children[0] !== undefined) && (item[node].children[0].id === 'cross')) {
+            id.push(item[node])
+        } else {
+            continue
+        }
     }
 
-    for (const node of item) {
-        console.log(node)
 
-        // if (item.childNode.length > 0) {
-        //     console.log(node.childNode.id)
-        // }
-    }
 
 }
 
