@@ -6,13 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>TIC-TAC-TOE</title>
-    <link rel="stylesheet" href="assets/styles/styles.css" />
+    <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.css" />
+    <link rel="stylesheet" href="assets/styles/styles.css" defer />
     <script src="assets/scripts/index.js" defer></script>
 </head>
 
 <body>
-    <div class="container">
+    <div class="title">
         <h2>TIC-TAC-TOE</h2>
+        <div class="underline"></div>
+    </div>
+    <p class="text">To begin the game, click on the empty cell!!</p>
+
+    <div class="container">
         <section id="board">
             <table>
                 <tr>
@@ -33,6 +39,8 @@
             </table>
         </section>
     </div>
+
+    <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </body>
 
 <!-- This is the div for the cross sign -->
