@@ -1,0 +1,111 @@
+/* * {
+  box-sizing: border-box;
+} */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 0% 25%;
+  padding-top: 2%;
+  text-align: center;
+  background-image: url(../img/background.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #1b1e1b;
+  color: white;
+}
+h2 {
+  font-size: 3rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.text {
+  text-transform: capitalize;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+.underline {
+  width: 9rem;
+  height: 0.25rem;
+  background: green;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+}
+
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 1rem;
+}
+
+table {
+  max-height: 300px;
+  border-spacing: 0;
+  align-self: center;
+  justify-self: center;
+}
+
+#board {
+  height: 308px;
+  width: 308px;
+  border: 0.2rem solid #4f6a42;
+  display: flex;
+  justify-content: center;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+  padding: 0;
+}
+
+#circle {
+  background-color: transparent;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: cyan;
+  width: 40px;
+  height: 40px;
+  margin: 25%;
+  visibility: hidden;
+}
+
+#cross {
+  width: 40px;
+  height: 80px;
+  visibility: hidden;
+  color: green;
+}
+
+span {
+  content: "\2715";
+  font-size: 75px;
+  padding: 20px 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+td {
+  width: 100px;
+  height: 100px;
+}
+
+.vert {
+  border-left: 2px solid #4f6a42;
+  border-right: 2px solid #4f6a42;
+}
+
+.hori {
+  border-top: 2px solid #4f6a42;
+  border-bottom: 2px solid #4f6a42;
+}
