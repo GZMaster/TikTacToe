@@ -19,14 +19,21 @@ class Move {
         storeMoves(pos)     // passes the move made to the storeMoves method that handles all move made
         pos.append(clonedSign)
         clonedSign.style.visibility = "visible"
+        if (checkWinner(playerSign)) {
+            alert('You Won')
+        } else {
+            this.computerMove(oppositeSign(this.sign))  // this calls the computer to make a move
+        }
 
-        this.computerMove(oppositeSign(this.sign))  // this calls the computer to make a move
-        // checkWinner(playerSign)
     }
 
     // computer move method 
     computerMove(computerSign) {
-        const moves = storeMoves()      // gets the moves made from the store moves method
+        try {
+            const moves = storeMoves()      // gets the moves made from the store moves method
+        } catch (RangeError) {
+            return
+        }
         const compMove = squareList[Math.floor(Math.random() * squareList.length)]      // Randomly generates a player move
         const nextMove = compareMoves(moves, compMove)
 
@@ -39,7 +46,11 @@ class Move {
             compMove.append(clonedSign)
             clonedSign.style.visibility = "visible"
 
-            checkWinner(computerSign)
+            setTimeout(() => {
+                if (checkWinner(computerSign)) {
+                    alert('You Lost')
+                }
+            }, 200);
         }
 
     }
@@ -81,27 +92,73 @@ class App {
 function checkWinner(sign) {
     var item = squareList
     var id = []
-    var Ahori = ['A1', 'A2', 'A3']
-    var Bhori = ['B1', 'B2', 'B3']
-    var Chori = ['C1', 'C2', 'C3']
-    var Avert = ['A1', 'B1', 'C1']
-    var Bvert = ['A2', 'B2', 'C2']
-    var Cvert = ['A3', 'B3', 'C3']
-    var Adiag = ['A1', 'B2', 'C3']
-    var Cdiag = ['A3', 'B2', 'C1']
+    var pass = false
 
-    var pass = 0
+    for (var i in item) {
 
-    for (var node in item) {
-        if ((item[node].children[0] !== undefined) && (item[node].children[0].id === 'cross')) {
-            id.push(item[node])
+        if (
+            ((item[0].children[0] !== undefined) && (item[0].id === 'A1') && (item[0].children[0].id === sign.id)) &&
+            ((item[1].children[0] !== undefined) && (item[1].id === 'A2') && (item[1].children[0].id === sign.id)) &&
+            ((item[2].children[0] !== undefined) && (item[2].id === 'A3') && (item[2].children[0].id === sign.id))
+        ) {
+            pass = true
+            break
+        } else if (
+            ((item[3].children[0] !== undefined) && (item[3].id === 'B1') && (item[3].children[0].id === sign.id)) &&
+            ((item[4].children[0] !== undefined) && (item[4].id === 'B2') && (item[4].children[0].id === sign.id)) &&
+            ((item[5].children[0] !== undefined) && (item[5].id === 'B3') && (item[5].children[0].id === sign.id))
+        ) {
+            pass = true
+            break
+        } else if (
+            ((item[6].children[0] !== undefined) && item[6].id === 'C1' && item[6].children[0].id === sign.id) &&
+            ((item[7].children[0] !== undefined) && item[7].id === 'C2' && item[7].children[0].id === sign.id) &&
+            ((item[8].children[0] !== undefined) && item[8].id === 'C3' && item[8].children[0].id === sign.id)
+        ) {
+            pass = true
+            break
+        } else if (
+            ((item[0].children[0] !== undefined) && item[0].id === 'A1' && item[0].children[0].id === sign.id) &&
+            ((item[3].children[0] !== undefined) && item[3].id === 'B1' && item[3].children[0].id === sign.id) &&
+            ((item[6].children[0] !== undefined) && item[6].id === 'C1' && item[6].children[0].id === sign.id)
+        ) {
+            pass = true
+            break
+        } else if (
+            ((item[1].children[0] !== undefined) && item[1].id === 'A2' && item[1].children[0].id === sign.id) &&
+            ((item[4].children[0] !== undefined) && item[4].id === 'B2' && item[4].children[0].id === sign.id) &&
+            ((item[7].children[0] !== undefined) && item[7].id === 'C2' && item[7].children[0].id === sign.id)
+        ) {
+            pass = true
+            break
+        } else if (
+            ((item[2].children[0] !== undefined) && item[2].id === 'A3' && item[2].children[0].id === sign.id) &&
+            ((item[5].children[0] !== undefined) && item[5].id === 'B3' && item[5].children[0].id === sign.id) &&
+            ((item[8].children[0] !== undefined) && item[8].id === 'C3' && item[8].children[0].id === sign.id)
+        ) {
+            pass = true
+            break
+        } else if (
+            ((item[0].children[0] !== undefined) && item[0].id === 'A1' && item[0].children[0].id === sign.id) &&
+            ((item[4].children[0] !== undefined) && item[4].id === 'B2' && (item[4].children[0].id === sign.id)) &&
+            ((item[8].children[0] !== undefined) && item[8].id === 'C3' && (item[8].children[0].id === sign.id))
+        ) {
+            pass = true
+            break
+        } else if (
+            ((item[2].children[0] !== undefined) && (item[2].id === 'A3') && (item[2].children[0].id === sign.id)) &&
+            ((item[4].children[0] !== undefined) && (item[4].id === 'B2') && (item[4].children[0].id === sign.id)) &&
+            ((item[6].children[0] !== undefined) && (item[6].id === 'C1') && (item[6].children[0].id === sign.id))
+        ) {
+            pass = true
+            break
         } else {
-            continue
+            pass = false
         }
+
     }
 
-
-
+    return pass
 }
 
 // compares the next move if it is valid
