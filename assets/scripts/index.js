@@ -34,6 +34,7 @@ class Move {
             const moves = storeMoves()      // gets the moves made from the store moves method
         } catch (RangeError) {
             alert('Draw')
+            location.reload();
         }
         const compMove = squareList[Math.floor(Math.random() * squareList.length)]      // Randomly generates a player move
         const nextMove = compareMoves(moves, compMove)
@@ -47,12 +48,10 @@ class Move {
             compMove.append(clonedSign)
             clonedSign.style.visibility = "visible"
 
-            setTimeout(() => {
-                if (checkWinner(computerSign)) {
-                    alert('You Lost')
-                    location.reload();
-                }
-            }, 200);
+            if (checkWinner(computerSign)) {
+                alert('You Lost')
+                location.reload();
+            }
         }
 
     }
