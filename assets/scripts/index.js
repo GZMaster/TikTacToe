@@ -1,93 +1,95 @@
 // Global variables
-const moves = []    // Store the moves made in an array object
-const squares = document.getElementsByTagName('td')     // Stores the table elements
+const moves = []; // Store the moves made in an array object
+const squares = document.getElementsByTagName("td"); // Stores the table elements
 var squareList = Array.prototype.slice.call(squares);
 
 // Move class called when a move is about to be made
 class Move {
-    // constructor that defines the objects and methods 
+    // constructor that defines the objects and methods
     constructor(sign, pos) {
-        this.sign = sign
-        this.pos = pos
-        this.playerMove(sign, pos)
+        this.sign = sign;
+        this.pos = pos;
+        this.playerMove(sign, pos);
     }
 
     // player move method
     playerMove(sign, pos) {
-        const playerSign = signSetter(sign)
-        let clonedSign = playerSign.cloneNode(true)
-        storeMoves(pos)     // passes the move made to the storeMoves method that handles all move made
-        pos.append(clonedSign)
-        clonedSign.style.visibility = "visible"
+        const playerSign = signSetter(sign);
+        let clonedSign = playerSign.cloneNode(true);
+        storeMoves(pos); // passes the move made to the storeMoves method that handles all move made
+        pos.append(clonedSign);
+        clonedSign.style.cssText = "visibility : visible; display: block;";
         if (checkWinner(playerSign)) {
-            alert('You Won')
-            location.reload();
+            win();
         } else {
-            this.computerMove(oppositeSign(this.sign))  // this calls the computer to make a move
+            this.computerMove(oppositeSign(this.sign)); // this calls the computer to make a move
         }
-
     }
 
-    // computer move method 
+    // computer move method
     computerMove(computerSign) {
         try {
-            const moves = storeMoves()      // gets the moves made from the store moves method
+            const moves = storeMoves(); // gets the moves made from the store moves method
         } catch (RangeError) {
-            alert('Draw')
-            location.reload();
+            return;
         }
-        const compMove = squareList[Math.floor(Math.random() * squareList.length)]      // Randomly generates a player move
-        const nextMove = compareMoves(moves, compMove)
+        const compMove = squareList[Math.floor(Math.random() * squareList.length)]; // Randomly generates a player move
+        const nextMove = compareMoves(moves, compMove);
 
         // checks to see if the move is valid and passes it if it is
         if (nextMove === false) {
-            this.computerMove(computerSign)
+            this.computerMove(computerSign);
         } else {
-            let clonedSign = computerSign.cloneNode(true)
-            storeMoves(compMove)
-            compMove.append(clonedSign)
-            clonedSign.style.visibility = "visible"
+            let clonedSign = computerSign.cloneNode(true);
+            storeMoves(compMove);
+            compMove.append(clonedSign);
+            clonedSign.style.cssText = "visibility : visible; display: block;";
 
-            if (checkWinner(computerSign)) {
-                alert('You Lost')
-                location.reload();
-            }
+            setTimeout(() => {
+                if (checkWinner(computerSign)) {
+                    swal({
+                        title: "You Lost",
+                        icon: "error",
+                    });
+                }
+            }, 200);
         }
-
     }
 }
-
+function win() {
+    Swal({
+        title: "You Won",
+        icon: "success",
+    });
+}
 // SquareHandler method handles the cick listener event of the table elements
 class SquareHandler {
     constructor(sign, obj) {
-        this.sign = sign
-        this.obj = obj
-        this.obj.addEventListener('click', this.addHandler.bind(this))
+        this.sign = sign;
+        this.obj = obj;
+        this.obj.addEventListener("click", this.addHandler.bind(this));
     }
 
     addHandler() {
         if (this.obj.children.length) {
-            this.obj.removeEventListener('click', this.addHandler)
+            this.obj.removeEventListener("click", this.addHandler);
         } else {
-            const move = new Move(this.sign, this.obj)
+            const move = new Move(this.sign, this.obj);
         }
     }
-
 }
 
 // Main app static class
 class App {
     static init() {
-
-        const sign = 'X'
+        const sign = "X";
 
         for (const item of squareList) {
-            new SquareHandler(sign, item)
+            new SquareHandler(sign, item);
         }
-
     }
-
 }
+
 
 // method for checking if there is a winner
 function checkWinner(sign) {
