@@ -18,7 +18,7 @@ class Move {
     let clonedSign = playerSign.cloneNode(true);
     storeMoves(pos); // passes the move made to the storeMoves method that handles all move made
     pos.append(clonedSign);
-    clonedSign.style.visibility = "visible";
+    clonedSign.style.cssText = "visibility : visible; display: block;";
     if (checkWinner(playerSign)) {
       win();
     } else {
@@ -43,7 +43,7 @@ class Move {
       let clonedSign = computerSign.cloneNode(true);
       storeMoves(compMove);
       compMove.append(clonedSign);
-      clonedSign.style.visibility = "visible";
+      clonedSign.style.cssText = "visibility : visible; display: block;";
 
       setTimeout(() => {
         if (checkWinner(computerSign)) {
