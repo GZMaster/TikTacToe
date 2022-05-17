@@ -1,5 +1,5 @@
 // Global variables
-const moves = []; // Store the moves made in an array object
+var moves = []; // Store the moves made in an array object
 const squares = document.getElementsByTagName("td"); // Stores the table elements
 var squareList = Array.prototype.slice.call(squares);
 
@@ -19,11 +19,15 @@ class Move {
         storeMoves(pos); // passes the move made to the storeMoves method that handles all move made
         pos.append(clonedSign);
         clonedSign.style.cssText = "visibility : visible; display: block;";
-        if (checkWinner(playerSign)) {
-            win();
-        } else {
-            this.computerMove(oppositeSign(this.sign)); // this calls the computer to make a move
-        }
+
+        setTimeout(() => {
+            if (checkWinner(playerSign)) {
+                endGame('player');
+            } else {
+                this.computerMove(oppositeSign(this.sign)); // this calls the computer to make a move
+            }
+        }, 200)
+
     }
 
     // computer move method
@@ -31,7 +35,7 @@ class Move {
         try {
             const moves = storeMoves(); // gets the moves made from the store moves method
         } catch (RangeError) {
-            return;
+            location.reload
         }
         const compMove = squareList[Math.floor(Math.random() * squareList.length)]; // Randomly generates a player move
         const nextMove = compareMoves(moves, compMove);
@@ -47,21 +51,13 @@ class Move {
 
             setTimeout(() => {
                 if (checkWinner(computerSign)) {
-                    swal({
-                        title: "You Lost",
-                        icon: "error",
-                    });
+                    endGame('computer')
                 }
             }, 200);
         }
     }
 }
-function win() {
-    Swal({
-        title: "You Won",
-        icon: "success",
-    });
-}
+
 // SquareHandler method handles the cick listener event of the table elements
 class SquareHandler {
     constructor(sign, obj) {
@@ -83,13 +79,48 @@ class SquareHandler {
 class App {
     static init() {
         const sign = "X";
+        const restBtn = document.getElementById('reset')
+
+        restBtn.addEventListener('click', resetGame)
 
         for (const item of squareList) {
             new SquareHandler(sign, item);
         }
+
+
     }
 }
 
+// // this method clears the call stack
+// function clear() {
+//     this.container = [];
+// }
+
+// this method rest the game 
+function resetGame() {
+    location.reload()
+}
+
+// this method handles the end game 
+function endGame(whoWon = '') {
+    if (whoWon === 'player') {
+        new Swal({
+            title: "You Won",
+            icon: "success",
+        }).then(resetGame)
+    } else if (whoWon === 'computer') {
+        new swal({
+            title: "You Lost",
+            icon: "error",
+        }).then(resetGame)
+    } else {
+        new swal({
+            title: "Draw",
+            icon: "error",
+        }).then(resetGame)
+    }
+
+}
 
 // method for checking if there is a winner
 function checkWinner(sign) {
