@@ -7,48 +7,58 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>TIC-TAC-TOE</title>
     <link rel="stylesheet" href="./node_modules/sweetalert2/dist/sweetalert2.css" />
-    <link rel="stylesheet" href="assets/styles/styles.css" defer />
+    <link rel="stylesheet" href="assets/styles/styles.css" />
     <script src="assets/scripts/index.js" defer></script>
 </head>
 
 <body>
-    <div class="title">
-        <h2>TIC-TAC-TOE</h2>
-        <div class="underline"></div>
-    </div>
-    <p class="text">To begin the game, click on the empty cell!!</p>
-
     <div class="container">
-        <section id="board">
-            <table>
-                <tr>
-                    <td id="A1"></td>
-                    <td class="vert" id="A2"></td>
-                    <td id="A3"></td>
-                </tr>
-                <tr>
-                    <td class="hori" id="B1"></td>
-                    <td class="vert hori" id="B2"></td>
-                    <td class="hori" id="B3"></td>
-                </tr>
-                <tr>
-                    <td id="C1"></td>
-                    <td class="vert" id="C2"></td>
-                    <td id="C3"></td>
-                </tr>
-            </table>
-        </section>
+        <div class="title">
+            <h2>TIC<span class="green">-TAC-</span>TOE</h2>
+            <div class="underline"></div>
+        </div>
+        <p class="text">To begin the game, click on an empty cell!!</p>
+
+        <div>
+            <section id="board">
+                <table>
+                    <tr>
+                        <td id="A1"></td>
+                        <td class="vert" id="A2"></td>
+                        <td id="A3"></td>
+                    </tr>
+                    <tr>
+                        <td class="hori" id="B1"></td>
+                        <td class="vert hori" id="B2"></td>
+                        <td class="hori" id="B3"></td>
+                    </tr>
+                    <tr>
+                        <td id="C1"></td>
+                        <td class="vert" id="C2"></td>
+                        <td id="C3"></td>
+                    </tr>
+                </table>
+            </section>
+        </div>
+        <div class="btn-container">
+            <div class="selection-btn">
+                <p class="text">Make a Selection Below</p>
+                <button class="btn X">X</button>
+                <button class="btn O">O</button>
+            </div>
+            <div class="btn reset" id="reset">Reset</div>
+        </div>
+        <div>
+            <!-- This is the div for the cross sign -->
+            <div id="cross">
+                <span>&#10005;</span>
+            </div>
+            <!-- This is the div for the circle sign -->
+            <div id="circle"></div>
+        </div>
     </div>
 
     <script src="./node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
 </body>
-
-<!-- This is the div for the cross sign -->
-<div id="cross">
-    <span>&#10005;</span>
-</div>
-
-<!-- This is the div for the circle sign -->
-<div id="circle"></div>
 
 </html>
