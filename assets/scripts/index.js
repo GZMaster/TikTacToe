@@ -79,18 +79,37 @@ class SquareHandler {
 
 // Main app static class
 class App {
+
+
     static init() {
-        const sign = "X";
         const restBtn = document.getElementById('reset')
+        const crossBtn = document.getElementById('crossbtn')
+        const circleBtn = document.getElementById('circlebtn')
+
+        var sign = undefined
+        crossBtn.addEventListener('click', () => {
+            console.log('x')
+            sign = 'X'
+        })
+        circleBtn.addEventListener('click', () => {
+            console.log('O')
+            sign = 'O'
+        })
 
         restBtn.addEventListener('click', resetGame)
+        App.startGame(sign)
 
+    }
+
+    static startGame(sign) {
         for (const item of squareList) {
             new SquareHandler(sign, item);
         }
-
-
     }
+}
+
+function signGetter() {
+
 }
 
 // // this method clears the call stack
@@ -231,7 +250,7 @@ function storeMoves(playerMoves = null) {
 // returns the opposite sign of the player sign
 function oppositeSign(inputSign) {
     var computerSign
-    if (inputSign.id === document.getElementById("circle").id) {
+    if (inputSign === document.getElementById("circle")) {
         computerSign = document.getElementById("cross")
         return computerSign
     } else {
