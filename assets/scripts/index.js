@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2'
+
 // Global variables
 var moves = []; // Store the moves made in an array object
 const squares = document.getElementsByTagName("td"); // Stores the table elements
@@ -104,26 +106,26 @@ function resetGame() {
 // this method handles the end game 
 function endGame(whoWon = '') {
     if (whoWon === 'player') {
-        alert('You won')
+        // alert('You won')
 
-        // new Swal({
-        //     title: "You Won",
-        //     icon: "success",
-        // }).then(resetGame)
+        new Swal({
+            title: "You Won",
+            icon: "success",
+        }).then(resetGame)
     } else if (whoWon === 'computer') {
-        alert('You lost')
+        // alert('You lost')
 
-        // new swal({
-        //     title: "You Lost",
-        //     icon: "error",
-        // }).then(resetGame)
+        new swal({
+            title: "You Lost",
+            icon: "error",
+        }).then(resetGame)
     } else {
-        alert('Draw')
+        // alert('Draw')
 
-        // new swal({
-        //     title: "Draw",
-        //     icon: "error",
-        // }).then(resetGame)
+        new swal({
+            title: "Draw",
+            icon: "error",
+        }).then(resetGame)
     }
 
 }
