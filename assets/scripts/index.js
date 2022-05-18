@@ -79,37 +79,30 @@ class SquareHandler {
 
 // Main app static class
 class App {
-
-
     static init() {
         const restBtn = document.getElementById('reset')
         const crossBtn = document.getElementById('crossbtn')
         const circleBtn = document.getElementById('circlebtn')
 
-        var sign = undefined
-        crossBtn.addEventListener('click', () => {
-            console.log('x')
-            sign = 'X'
-        })
-        circleBtn.addEventListener('click', () => {
-            console.log('O')
-            sign = 'O'
-        })
+        crossBtn.addEventListener('click', startPlayerX)
+        circleBtn.addEventListener('click', startPlayerO)
 
         restBtn.addEventListener('click', resetGame)
-        App.startGame(sign)
-
-    }
-
-    static startGame(sign) {
-        for (const item of squareList) {
-            new SquareHandler(sign, item);
-        }
     }
 }
 
-function signGetter() {
+function startPlayerX() {
+    const sign = 'X'
+    for (const item of squareList) {
+        new SquareHandler(sign, item)
+    }
+}
 
+function startPlayerO() {
+    const sign = 'O'
+    for (const item of squareList) {
+        new SquareHandler(sign, item)
+    }
 }
 
 // // this method clears the call stack
@@ -250,11 +243,13 @@ function storeMoves(playerMoves = null) {
 // returns the opposite sign of the player sign
 function oppositeSign(inputSign) {
     var computerSign
-    if (inputSign === document.getElementById("circle")) {
+    if (inputSign === 'O') {
         computerSign = document.getElementById("cross")
+        console.log(computerSign)
         return computerSign
-    } else {
+    } else if (inputSign === 'X') {
         computerSign = document.getElementById("circle")
+        console.log(computerSign)
         return computerSign
     }
 }
