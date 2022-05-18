@@ -104,26 +104,20 @@ function resetGame() {
 // this method handles the end game 
 function endGame(whoWon = '') {
     if (whoWon === 'player') {
-        alert('You won')
-
-        // new Swal({
-        //     title: "You Won",
-        //     icon: "success",
-        // }).then(resetGame)
+        new Swal({
+            title: "You Won",
+            icon: "success",
+        }).then(resetGame)
     } else if (whoWon === 'computer') {
-        alert('You lost')
-
-        // new swal({
-        //     title: "You Lost",
-        //     icon: "error",
-        // }).then(resetGame)
+        new swal({
+            title: "You Lost",
+            icon: "error",
+        }).then(resetGame)
     } else {
-        alert('Draw')
-
-        // new swal({
-        //     title: "Draw",
-        //     icon: "error",
-        // }).then(resetGame)
+        new swal({
+            title: "Draw",
+            icon: "error",
+        }).then(resetGame)
     }
 
 }
