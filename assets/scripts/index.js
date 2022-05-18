@@ -97,7 +97,7 @@ function startPlayerX() {
     const btnContainer = document.getElementById('btn-container')
 
     board.style.cssText = "visibility : visible; display: block;"
-    btnContainer.style.cssText = "visibility : hidden; display: block;"
+    btnContainer.style.cssText = "visibility : hidden; display: none;"
 
     for (const item of squareList) {
         new SquareHandler(sign, item)
