@@ -93,6 +93,12 @@ class App {
 
 function startPlayerX() {
     const sign = 'X'
+    const board = document.getElementById('board')
+    const btnContainer = document.getElementById('btn-container')
+
+    board.style.cssText = "visibility : visible; display: block;"
+    btnContainer.style.cssText = "visibility : hidden; display: block;"
+
     for (const item of squareList) {
         new SquareHandler(sign, item)
     }
@@ -100,6 +106,12 @@ function startPlayerX() {
 
 function startPlayerO() {
     const sign = 'O'
+    const board = document.getElementById('board')
+    const btnContainer = document.getElementById('btn-container')
+
+    board.style.cssText = "visibility : visible; display: block;"
+    btnContainer.style.cssText = "visibility : hidden; display: none;"
+
     for (const item of squareList) {
         new SquareHandler(sign, item)
     }
