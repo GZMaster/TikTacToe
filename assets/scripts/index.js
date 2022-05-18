@@ -1,4 +1,4 @@
-// import swal from 'node_modules/sweetalert'
+import swal from 'node_modules/sweetalert'
 
 // Global variables
 var moves = []; // Store the moves made in an array object
