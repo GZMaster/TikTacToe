@@ -1,5 +1,3 @@
-import swal from 'sweetalert';
-
 // Global variables
 var moves = []; // Store the moves made in an array object
 const squares = document.getElementsByTagName("td"); // Stores the table elements
