@@ -61,6 +61,16 @@ h2 {
     justify-content: center;
 }
 
+.endgame-container {
+    height: 240px;
+    width: 240px;
+    border: 0.2rem solid cyan;
+    display: flex;
+    justify-content: center;
+    visibility: hidden;
+    display: none;
+}
+
 table {
     max-height: 300px;
     border-spacing: 0;
@@ -175,6 +185,7 @@ td {
     border: 2px solid red;
     background-color: transparent;
     color: red;
+    height: 30px
 }
 
 .reset:hover {
