@@ -80,14 +80,14 @@ class SquareHandler {
 // Main app static class
 class App {
     static init() {
-        const restBtn = document.getElementById('reset')
+        const resetBtn = document.getElementById('reset')
         const crossBtn = document.getElementById('crossbtn')
         const circleBtn = document.getElementById('circlebtn')
 
         crossBtn.addEventListener('click', startPlayerX)
         circleBtn.addEventListener('click', startPlayerO)
 
-        restBtn.addEventListener('click', resetGame)
+        resetBtn.addEventListener('click', resetGame)
     }
 }
 
@@ -117,39 +117,38 @@ function startPlayerO() {
     }
 }
 
-// // this method clears the call stack
-// function clear() {
-//     this.container = [];
-// }
-
 // this method rest the game 
 function resetGame() {
     location.reload()
 }
 
+// this method handles the end game text
+function endGameMsg(endMsg) {
+    const endGameContainer = document.getElementById('endgame-container')
+    const resetBtn = document.getElementById('reset')
+    const board = document.getElementById('board')
+
+    var endGameText = document.getElementById('endgame-text')
+    var passingText = document.createTextNode(endMsg)
+
+    endGameText.appendChild(passingText)
+    resetBtn.style.cssText = "visibility : hidden; display: none;"
+    board.style.cssText = "visibility : hidden; display: none;"
+    endGameContainer.style.cssText = "visibility : visible; display: block;"
+}
+
 // this method handles the end game 
 function endGame(whoWon = '') {
+    const endGameresetBtn = document.getElementById('endgame-reset')
+
+    endGameresetBtn.addEventListener('click', resetGame)
+
     if (whoWon === 'player') {
-        alert('You won')
-        resetGame()
-        // new Swal({
-        //     title: "You Won",
-        //     icon: "success",
-        // }).then(resetGame)
+        endGameMsg('You Won!')
     } else if (whoWon === 'computer') {
-        alert('You lost')
-        resetGame()
-        // new swal({
-        //     title: "You Lost",
-        //     icon: "error",
-        // }).then(resetGame)
+        endGameMsg('You Lost!')
     } else {
-        alert('Draw')
-        resetGame()
-        // new swal({
-        //     title: "Draw",
-        //     icon: "error",
-        // }).then(resetGame)
+        endGameMsg('Draw!')
     }
 
 }
